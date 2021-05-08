@@ -3,10 +3,15 @@ package com.songxian.compose_wanandroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.offset
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.songxian.compose_wanandroid.ui.theme.ComposeWanAndroidTheme
 
@@ -17,22 +22,59 @@ class MainActivity : ComponentActivity() {
             ComposeWanAndroidTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    MainAppContent()
                 }
             }
         }
     }
+
 }
 
+
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+private fun MainAppContent() {
+    Scaffold(
+        topBar = {
+
+        },
+        content = {
+            HomeScreenContent(Modifier)
+        },
+        bottomBar = {
+            BottomNavigation(modifier = Modifier)
+        }
+    )
 }
 
-@Preview(showBackground = true)
+
 @Composable
-fun DefaultPreview() {
-    ComposeWanAndroidTheme {
-        Greeting("Android")
+fun HomeScreenContent(
+    modifier: Modifier
+) {
+    Column(
+        modifier = modifier
+            .background(Color.Red)
+    ) {
+        Text(text = "内容")
     }
+}
+
+
+@Composable
+fun BottomNavigation(
+    modifier: Modifier
+) {
+    Column(
+        modifier = modifier
+            .background(Color.Red)
+    ) {
+        Text(text = "底部")
+    }
+}
+
+
+@Preview
+@Composable
+fun PreviewMainAppContent() {
+    MainAppContent()
 }
